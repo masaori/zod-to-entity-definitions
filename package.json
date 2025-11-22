@@ -1,6 +1,6 @@
 {
   "name": "@masaori/zod-to-entity-definitions",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A library to define data models using Zod with extended metadata and convert them into framework-agnostic Entity Definitions",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -12,7 +12,9 @@
       "require": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -25,7 +27,15 @@
     "check-types": "tsc --noEmit",
     "prepublishOnly": "npm run check-types && npm run lint && npm run test && npm run build"
   },
-  "keywords": ["zod", "entity", "orm", "schema", "typescript", "entity-definition", "er-model"],
+  "keywords": [
+    "zod",
+    "entity",
+    "orm",
+    "schema",
+    "typescript",
+    "entity-definition",
+    "er-model"
+  ],
   "author": "",
   "license": "MIT",
   "repository": {
