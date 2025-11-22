@@ -97,11 +97,16 @@ All commit messages must follow the [Conventional Commits](https://www.conventio
    - ❌ `Fix package.json formatting`
    - ✅ `fix: package.json formatting`
 
-2. **Body line too long**: `✖ body's lines must not be longer than 100 characters`
+2. **Subject case violation**: `✖ subject must not be sentence-case, start-case, pascal-case, upper-case [subject-case]`
+   - ❌ `fix: Fix package.json formatting`
+   - ✅ `fix: package.json formatting`
+   - Subject must be lowercase, not capitalized
+
+3. **Body line too long**: `✖ body's lines must not be longer than 100 characters`
    - Keep body lines under 100 characters
    - Break long lines into multiple shorter lines
 
-3. **Empty subject**: `✖ subject may not be empty [subject-empty]`
+4. **Empty subject**: `✖ subject may not be empty [subject-empty]`
    - Always provide a description after the type and colon
 
 Before committing, verify your commit message with:
