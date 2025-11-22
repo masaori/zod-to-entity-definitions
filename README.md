@@ -76,7 +76,7 @@ The library extends Zod schemas with the following methods:
 Marks a field as the Primary Key.
 
 ```typescript
-id: z.string().pk()
+id: z.string().pk();
 ```
 
 #### `.unique()`
@@ -84,7 +84,7 @@ id: z.string().pk()
 Marks a field as Unique.
 
 ```typescript
-email: z.string().email().unique()
+email: z.string().email().unique();
 ```
 
 #### `.ref(targetEntity, targetColumn?)`
@@ -95,8 +95,8 @@ Marks a field as a Foreign Key reference to another entity.
 - `targetColumn`: Optional, defaults to "id"
 
 ```typescript
-companyId: z.string().ref(Company)
-managerId: z.string().ref(User, 'userId')
+companyId: z.string().ref(Company);
+managerId: z.string().ref(User, 'userId');
 ```
 
 ### Factory Functions

@@ -78,6 +78,4 @@ console.log('SUMMARY');
 console.log('='.repeat(60));
 console.log(`Total Entities: ${definitions.length}`);
 console.log(`Total Relations: ${relations.length}`);
-console.log(
-  `\nEntities: ${definitions.map((d) => d.name).join(', ')}`
-);
+console.log(`\nEntities: ${definitions.map((d) => d.name).join(', ')}`);

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2025-11-22
 
 ### Added
+
 - Initial implementation of zod-to-entity-definitions library
 - Zod schema extensions: `.pk()`, `.unique()`, `.ref()`
 - Factory functions: `entity()` and `struct()`
@@ -20,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Complete documentation (README, ARCHITECTURE, example)
 
 ### Features
+
 - Framework-agnostic entity definitions
 - Entity nesting validation
 - Reference integrity validation
@@ -27,4 +29,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Symbol-based metadata storage to avoid property name conflicts
 
 ### Security
+
 - Zero security vulnerabilities (verified with CodeQL)
