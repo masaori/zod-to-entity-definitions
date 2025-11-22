@@ -20,11 +20,7 @@ jobs:
 
       - name: Install commitlint
         run: |
-          npm install --save-dev @commitlint/cli @commitlint/config-conventional
-
-      - name: Create commitlint config
-        run: |
-          echo "export default { extends: ['@commitlint/config-conventional'] };" > commitlint.config.mjs
+          npm install -g @commitlint/cli @commitlint/config-conventional
 
       - name: Validate PR commits
         run: |
