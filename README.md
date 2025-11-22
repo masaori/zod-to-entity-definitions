@@ -13,15 +13,31 @@ A TypeScript library that allows you to define data models using Zod with extend
 
 ## Installation
 
+### From GitHub Packages
+
+First, configure npm to use GitHub Packages for the `@masaori` scope:
+
 ```bash
-npm install zod-to-entity-definitions zod
+npm config set @masaori:registry https://npm.pkg.github.com
+```
+
+Then install the package:
+
+```bash
+npm install @masaori/zod-to-entity-definitions zod
+```
+
+For authentication, create a Personal Access Token (PAT) with `read:packages` scope and add it to your `.npmrc`:
+
+```bash
+echo "//npm.pkg.github.com/:_authToken=YOUR_TOKEN_HERE" >> ~/.npmrc
 ```
 
 ## Quick Start
 
 ```typescript
 import { z } from 'zod';
-import { entity, struct, generateEntities, generateRelations } from 'zod-to-entity-definitions';
+import { entity, struct, generateEntities, generateRelations } from '@masaori/zod-to-entity-definitions';
 
 // 1. Define a Struct (reusable component)
 const Address = struct({
@@ -351,26 +367,30 @@ This project uses GitHub Actions for continuous integration and deployment.
    - Executes linting, type checking, and tests
    - Must pass before merging
 
-3. **Publish to npm** (`.github/workflows/publish.yml`)
+3. **Publish to GitHub Packages** (`.github/workflows/publish.yml`)
    - Manual workflow trigger only (workflow_dispatch)
    - Automatically determines version bump using semantic versioning
-   - Publishes to npm with automatic changelog generation
+   - Publishes to GitHub Packages with automatic changelog generation
    - Version bumps follow Conventional Commits:
      - `feat:` → minor version bump
      - `fix:`, `docs:`, `style:`, `refactor:`, `test:`, `build:`, `ci:`, `chore:` → patch version bump
      - `BREAKING CHANGE:` → major version bump
 
-### Publishing to NPM
+### Publishing to GitHub Packages
 
 Publishing is automated via GitHub Actions. To publish a new version:
 
-1. **Ensure you have an npm token**:
-   - Generate a token at [npmjs.com](https://www.npmjs.com/settings/~/tokens)
-   - Add it as a repository secret named `NPM_TOKEN`
+1. **Required tokens**: No additional tokens needed!
+   - The workflow uses the built-in `GITHUB_TOKEN` which is automatically provided by GitHub Actions
+   - The `GITHUB_TOKEN` has the necessary permissions to:
+     - Write to the repository (create tags, update files)
+     - Publish to GitHub Packages
+     - Create GitHub releases
+   - **No manual token configuration required** - it works out of the box
 
 2. **Trigger the publish workflow**:
    - Go to the Actions tab in GitHub
-   - Select "Publish to npm" workflow
+   - Select "Publish to GitHub Packages" workflow
    - Click "Run workflow" on the main branch
 
 3. **Automated process**:
@@ -378,7 +398,7 @@ Publishing is automated via GitHub Actions. To publish a new version:
    - Automatically determine the version bump (major/minor/patch)
    - Update `package.json` and `CHANGELOG.md`
    - Create a git tag and GitHub release
-   - Publish to npm
+   - Publish to GitHub Packages
 
 ### Commit Message Format
 
