@@ -12,7 +12,9 @@
       "require": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -25,7 +27,15 @@
     "check-types": "tsc --noEmit",
     "prepublishOnly": "npm run check-types && npm run lint && npm run test && npm run build"
   },
-  "keywords": ["zod", "entity", "orm", "schema", "typescript", "entity-definition", "er-model"],
+  "keywords": [
+    "zod",
+    "entity",
+    "orm",
+    "schema",
+    "typescript",
+    "entity-definition",
+    "er-model"
+  ],
   "author": "",
   "license": "MIT",
   "peerDependencies": {
@@ -36,6 +46,7 @@
     "@types/node": "^22.10.1",
     "prettier": "^3.4.2",
     "tsup": "^8.3.5",
+    "tsx": "^4.20.6",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8",
     "zod": "^3.23.8"
