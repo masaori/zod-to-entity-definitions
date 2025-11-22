@@ -46,6 +46,8 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # NODE_AUTH_TOKEN: Used by setup-node action for npm registry authentication
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # NPM_TOKEN: Used by semantic-release @semantic-release/npm plugin
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
