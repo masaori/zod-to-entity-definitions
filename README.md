@@ -335,29 +335,68 @@ npm run format
 npm run build
 ```
 
-## Publishing to NPM
+## CI/CD
 
-This package is ready to be published to npm. To publish:
+This project uses GitHub Actions for continuous integration and deployment.
 
-1. **Set up your npm account** (if you haven't already):
-   ```bash
-   npm login
-   ```
+### Workflows
 
-2. **Verify the package contents** before publishing:
-   ```bash
-   npm pack --dry-run
-   ```
+1. **Commit Message Validation** (`.github/workflows/commit-check.yml`)
+   - Runs on all PRs
+   - Validates commit messages using [Conventional Commits](https://www.conventionalcommits.org/)
+   - Ensures all commits are linear (no merge commits)
 
-3. **Publish the package**:
-   ```bash
-   npm publish
-   ```
+2. **Lint and Test** (`.github/workflows/lint-test.yml`)
+   - Runs on all PRs and pushes to main
+   - Executes linting, type checking, and tests
+   - Must pass before merging
 
-   If this is a scoped package (e.g., `@username/zod-to-entity-definitions`), use:
-   ```bash
-   npm publish --access public
-   ```
+3. **Publish to npm** (`.github/workflows/publish.yml`)
+   - Manual workflow trigger only (workflow_dispatch)
+   - Automatically determines version bump using semantic versioning
+   - Publishes to npm with automatic changelog generation
+   - Version bumps follow Conventional Commits:
+     - `feat:` → minor version bump
+     - `fix:`, `docs:`, `style:`, `refactor:`, `test:`, `build:`, `ci:`, `chore:` → patch version bump
+     - `BREAKING CHANGE:` → major version bump
+
+### Publishing to NPM
+
+Publishing is automated via GitHub Actions. To publish a new version:
+
+1. **Ensure you have an npm token**:
+   - Generate a token at [npmjs.com](https://www.npmjs.com/settings/~/tokens)
+   - Add it as a repository secret named `NPM_TOKEN`
+
+2. **Trigger the publish workflow**:
+   - Go to the Actions tab in GitHub
+   - Select "Publish to npm" workflow
+   - Click "Run workflow" on the main branch
+
+3. **Automated process**:
+   - The workflow will analyze commit messages since the last release
+   - Automatically determine the version bump (major/minor/patch)
+   - Update `package.json` and `CHANGELOG.md`
+   - Create a git tag and GitHub release
+   - Publish to npm
+
+### Commit Message Format
+
+All commits must follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+Examples:
+- `feat: add new entity validation`
+- `fix: correct reference resolution`
+- `docs: update README with examples`
+- `feat!: remove deprecated API` (breaking change)
 
 ### Pre-publish Checklist
 
@@ -368,13 +407,6 @@ The package includes a `prepublishOnly` script that automatically runs before pu
 - Build (`npm run build`)
 
 All these checks must pass before the package can be published.
-
-### Configuration
-
-The `.npmrc` file is included with recommended settings:
-- Uses the default npm registry
-- Saves exact versions (no ^ or ~)
-- Configured for public access (if needed for scoped packages)
 
 ## License
 
