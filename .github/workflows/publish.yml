@@ -40,10 +40,6 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Install semantic-release
-        run: |
-          npm install -g semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/npm conventional-changelog-conventionalcommits
-
       - name: Build
         run: npm run build
 
