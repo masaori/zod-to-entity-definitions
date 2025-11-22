@@ -27,11 +27,7 @@ Then install the package:
 npm install @masaori/zod-to-entity-definitions zod
 ```
 
-For authentication, create a Personal Access Token (PAT) with `read:packages` scope and add it to your `.npmrc`:
-
-```bash
-echo "//npm.pkg.github.com/:_authToken=YOUR_TOKEN_HERE" >> ~/.npmrc
-```
+**Note:** The package is published as public on GitHub Packages, so no authentication is required for installation.
 
 ## Quick Start
 
