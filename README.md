@@ -335,6 +335,47 @@ npm run format
 npm run build
 ```
 
+## Publishing to NPM
+
+This package is ready to be published to npm. To publish:
+
+1. **Set up your npm account** (if you haven't already):
+   ```bash
+   npm login
+   ```
+
+2. **Verify the package contents** before publishing:
+   ```bash
+   npm pack --dry-run
+   ```
+
+3. **Publish the package**:
+   ```bash
+   npm publish
+   ```
+
+   If this is a scoped package (e.g., `@username/zod-to-entity-definitions`), use:
+   ```bash
+   npm publish --access public
+   ```
+
+### Pre-publish Checklist
+
+The package includes a `prepublishOnly` script that automatically runs before publishing:
+- Type checking (`npm run check-types`)
+- Linting (`npm run lint`)
+- Tests (`npm run test`)
+- Build (`npm run build`)
+
+All these checks must pass before the package can be published.
+
+### Configuration
+
+The `.npmrc` file is included with recommended settings:
+- Uses the default npm registry
+- Saves exact versions (no ^ or ~)
+- Configured for public access (if needed for scoped packages)
+
 ## License
 
 MIT
