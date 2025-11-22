@@ -1,0 +1,133 @@
+[
+  {
+    "name": "Company",
+    "properties": [
+      {
+        "isReference": false,
+        "propertyType": "PrimaryKey",
+        "name": "id"
+      },
+      {
+        "isReference": false,
+        "propertyType": "string",
+        "name": "name",
+        "isUnique": false,
+        "isNullable": false,
+        "isArray": false,
+        "acceptableValues": null
+      },
+      {
+        "isReference": false,
+        "propertyType": "typedStruct",
+        "name": "address",
+        "structTypeName": "AddressStruct",
+        "isUnique": false,
+        "isNullable": false,
+        "isArray": false
+      },
+      {
+        "isReference": false,
+        "propertyType": "Date",
+        "name": "founded",
+        "isUnique": false,
+        "isNullable": false,
+        "isArray": false,
+        "acceptableValues": null
+      }
+    ],
+    "description": "Company entity"
+  },
+  {
+    "name": "Department",
+    "properties": [
+      {
+        "isReference": false,
+        "propertyType": "PrimaryKey",
+        "name": "id"
+      },
+      {
+        "isReference": false,
+        "propertyType": "string",
+        "name": "name",
+        "isUnique": false,
+        "isNullable": false,
+        "isArray": false,
+        "acceptableValues": null
+      },
+      {
+        "isReference": true,
+        "name": "companyId",
+        "targetEntityDefinitionName": "Company",
+        "isUnique": false,
+        "isNullable": false
+      }
+    ]
+  },
+  {
+    "name": "User",
+    "properties": [
+      {
+        "isReference": false,
+        "propertyType": "PrimaryKey",
+        "name": "id"
+      },
+      {
+        "isReference": false,
+        "propertyType": "string",
+        "name": "email",
+        "isUnique": true,
+        "isNullable": false,
+        "isArray": false,
+        "acceptableValues": null
+      },
+      {
+        "isReference": false,
+        "propertyType": "string",
+        "name": "name",
+        "isUnique": false,
+        "isNullable": false,
+        "isArray": false,
+        "acceptableValues": null
+      },
+      {
+        "isReference": false,
+        "propertyType": "string",
+        "name": "role",
+        "isUnique": false,
+        "isNullable": false,
+        "isArray": false,
+        "acceptableValues": [
+          "admin",
+          "manager",
+          "employee"
+        ]
+      },
+      {
+        "isReference": true,
+        "name": "departmentId",
+        "targetEntityDefinitionName": "Department",
+        "isUnique": false,
+        "isNullable": false
+      },
+      {
+        "isReference": false,
+        "propertyType": "string",
+        "name": "tags",
+        "isUnique": false,
+        "isNullable": true,
+        "isArray": true,
+        "acceptableValues": null
+      },
+      {
+        "isReference": false,
+        "propertyType": "boolean",
+        "name": "isActive",
+        "isUnique": false,
+        "isNullable": false,
+        "isArray": false,
+        "acceptableValues": null
+      }
+    ],
+    "description": "User entity representing employees"
+  }
+]

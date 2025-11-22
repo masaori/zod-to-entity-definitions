@@ -1,5 +1,6 @@
 src
 test
+examples
 node_modules
 coverage
 *.log
@@ -13,5 +14,4 @@ vitest.config.ts
 biome.json
 .prettierrc.json
 .prettierignore
-example.ts
 .github

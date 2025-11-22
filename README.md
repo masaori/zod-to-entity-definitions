@@ -65,6 +65,8 @@ console.log(JSON.stringify(definitions, null, 2));
 console.log(JSON.stringify(relations, null, 2));
 ```
 
+> 📝 **See the [examples](./examples) directory for complete working examples with generated JSON output.**
+
 ## API Reference
 
 ### Zod Extensions

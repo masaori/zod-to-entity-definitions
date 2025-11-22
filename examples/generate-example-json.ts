@@ -1,12 +1,14 @@
 /**
- * Example usage of zod-to-entity-definitions
+ * Script to generate example JSON output files from entity definitions
  *
  * Run this file with:
- * npx tsx example.ts
+ * npx tsx examples/generate-example-json.ts
  */
 
+import { writeFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { z } from 'zod';
-import { entity, struct, generateEntities, generateRelations } from './src/index';
+import { entity, generateEntities, generateRelations, struct } from '../src/index';
 
 // 1. Define a Struct (reusable component)
 const Address = struct({
@@ -59,23 +61,30 @@ const User = entity({
 });
 
 // 3. Generate Entity Definitions
-console.log('='.repeat(60));
-console.log('ENTITY DEFINITIONS');
-console.log('='.repeat(60));
 const definitions = generateEntities([Company, Department, User, Address]);
-console.log(JSON.stringify(definitions, null, 2));
 
 // 4. Generate Relations
-console.log('\n' + '='.repeat(60));
-console.log('ENTITY RELATIONS');
-console.log('='.repeat(60));
 const relations = generateRelations(definitions);
-console.log(JSON.stringify(relations, null, 2));
 
-// Summary
-console.log('\n' + '='.repeat(60));
-console.log('SUMMARY');
-console.log('='.repeat(60));
-console.log(`Total Entities: ${definitions.length}`);
-console.log(`Total Relations: ${relations.length}`);
-console.log(`\nEntities: ${definitions.map((d) => d.name).join(', ')}`);
+// 5. Write JSON files
+const outputDir = join(__dirname);
+
+writeFileSync(
+  join(outputDir, 'entity-definitions.json'),
+  JSON.stringify(definitions, null, 2),
+  'utf-8'
+);
+
+writeFileSync(
+  join(outputDir, 'entity-relations.json'),
+  JSON.stringify(relations, null, 2),
+  'utf-8'
+);
+
+console.log('✅ Generated JSON files:');
+console.log('  - examples/entity-definitions.json');
+console.log('  - examples/entity-relations.json');
+console.log(`\n📊 Summary:`);
+console.log(`  - Total Entities: ${definitions.length}`);
+console.log(`  - Total Relations: ${relations.length}`);
+console.log(`  - Entities: ${definitions.map((d) => d.name).join(', ')}`);
