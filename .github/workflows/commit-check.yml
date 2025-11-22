@@ -26,11 +26,11 @@ jobs:
 
       - name: Validate PR commits
         run: |
-          npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+          npx commitlint --from "${{ github.event.pull_request.base.sha }}" --to "${{ github.event.pull_request.head.sha }}" --verbose
 
       - name: Check for merge commits
         run: |
-          MERGE_COMMITS=$(git log --merges --oneline ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }})
+          MERGE_COMMITS=$(git log --merges --oneline "${{ github.event.pull_request.base.sha }}".."${{ github.event.pull_request.head.sha }}")
           if [ -n "$MERGE_COMMITS" ]; then
             echo "Error: Merge commits detected. All commits must be linear."
             echo "$MERGE_COMMITS"
