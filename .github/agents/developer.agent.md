@@ -73,7 +73,17 @@ Immediately before outputting code, perform the following checks:
 After generating code, run the following commands to verify that the generated code meets the standards:
 
 ```bash
-pnpm lint
-pnpm fix # auto-format if needed
-pnpm check-types
+npm run lint
+npm run fix # auto-format if needed
+npm run check-types
 ```
+
+## 7. Commit Message Format
+
+All commit messages must follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
+
+- **Format**: `<type>: <subject>`
+- **Valid types**: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+- **Example**: `fix: correct formatting in package.json`
+
+Before committing, verify your commit message follows this format to pass CI checks.
