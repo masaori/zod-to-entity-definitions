@@ -16,7 +16,7 @@ export { generateEntities, generateRelations } from './generator';
 export type {
   EntityDefinition,
   EntityPropertyDefinition,
-  EntityPropertyDefinitionId,
+  EntityPropertyDefinitionPrimaryKey,
   EntityPropertyDefinitionPrimitive,
   EntityPropertyDefinitionTypedStruct,
   EntityPropertyDefinitionReferencedObject,

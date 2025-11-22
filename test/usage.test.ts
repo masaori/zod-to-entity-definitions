@@ -51,7 +51,7 @@ describe('zod-to-entity-definitions', () => {
       const companyId = companyDef?.properties.find((p) => p.name === 'id');
       expect(companyId).toMatchObject({
         isReference: false,
-        propertyType: 'Id',
+        propertyType: 'PrimaryKey',
         name: 'id',
       });
 
@@ -84,7 +84,7 @@ describe('zod-to-entity-definitions', () => {
       const userId = userDef?.properties.find((p) => p.name === 'id');
       expect(userId).toMatchObject({
         isReference: false,
-        propertyType: 'Id',
+        propertyType: 'PrimaryKey',
         name: 'id',
       });
 

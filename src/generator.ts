@@ -7,7 +7,7 @@ import { getRefMetadata, isPrimaryKey, isUnique } from './setupZod';
 import type {
   EntityDefinition,
   EntityPropertyDefinition,
-  EntityPropertyDefinitionId,
+  EntityPropertyDefinitionPrimaryKey,
   EntityPropertyDefinitionPrimitive,
   EntityPropertyDefinitionReferencedObject,
   EntityPropertyDefinitionTypedStruct,
@@ -110,9 +110,9 @@ function parseProperty(fieldName: string, fieldSchema: z.ZodTypeAny): EntityProp
 
   // Handle Primary Key
   if (isPk) {
-    const property: EntityPropertyDefinitionId = {
+    const property: EntityPropertyDefinitionPrimaryKey = {
       isReference: false,
-      propertyType: 'Id',
+      propertyType: 'PrimaryKey',
       name: fieldName,
     };
     return property;

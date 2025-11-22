@@ -166,7 +166,7 @@ type EntityDefinition = {
 
 Union type representing different property types:
 
-- `EntityPropertyDefinitionId`: Primary key field
+- `EntityPropertyDefinitionPrimaryKey`: Primary key field
 - `EntityPropertyDefinitionPrimitive`: boolean, number, string, Date
 - `EntityPropertyDefinitionTypedStruct`: Reference to a struct type
 - `EntityPropertyDefinitionReferencedObject`: Foreign key reference

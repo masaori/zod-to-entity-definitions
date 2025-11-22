@@ -9,14 +9,14 @@ export type EntityDefinition<TEntityNames = string> = {
 };
 
 export type EntityPropertyDefinition =
-  | EntityPropertyDefinitionId
+  | EntityPropertyDefinitionPrimaryKey
   | EntityPropertyDefinitionPrimitive
   | EntityPropertyDefinitionTypedStruct
   | EntityPropertyDefinitionReferencedObject;
 
-export type EntityPropertyDefinitionId = {
+export type EntityPropertyDefinitionPrimaryKey = {
   isReference: false;
-  propertyType: 'Id';
+  propertyType: 'PrimaryKey';
   name: string;
   description?: string;
 };
