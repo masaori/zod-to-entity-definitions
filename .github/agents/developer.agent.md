@@ -76,3 +76,4 @@ After generating code, run the following commands to verify that the generated c
 pnpm lint
 pnpm fix # auto-format if needed
 pnpm check-types
+```

@@ -1,0 +1,44 @@
+{
+  "name": "zod-to-entity-definitions",
+  "version": "0.1.0",
+  "description": "A library to define data models using Zod with extended metadata and convert them into framework-agnostic Entity Definitions",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "fix": "biome check --write . && prettier --write .",
+    "format": "prettier --write .",
+    "check-types": "tsc --noEmit",
+    "prepublishOnly": "npm run check-types && npm run lint && npm run test && npm run build"
+  },
+  "keywords": ["zod", "entity", "orm", "schema", "typescript", "entity-definition", "er-model"],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "zod": "^3.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^22.10.1",
+    "prettier": "^3.4.2",
+    "tsup": "^8.3.5",
+    "tsx": "^4.20.6",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "zod": "^3.23.8"
+  }
+}

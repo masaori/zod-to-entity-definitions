@@ -1,0 +1,41 @@
+[
+  {
+    "entityName": "Company",
+    "referTos": [],
+    "referredBys": [
+      {
+        "entityName": "Department",
+        "propertyName": "companyId",
+        "isUnique": false
+      }
+    ]
+  },
+  {
+    "entityName": "Department",
+    "referTos": [
+      {
+        "entityName": "Company",
+        "propertyName": "companyId",
+        "isUnique": false
+      }
+    ],
+    "referredBys": [
+      {
+        "entityName": "User",
+        "propertyName": "departmentId",
+        "isUnique": false
+      }
+    ]
+  },
+  {
+    "entityName": "User",
+    "referTos": [
+      {
+        "entityName": "Department",
+        "propertyName": "departmentId",
+        "isUnique": false
+      }
+    ],
+    "referredBys": []
+  }
+]

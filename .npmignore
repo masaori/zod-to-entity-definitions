@@ -1,0 +1,17 @@
+src
+test
+examples
+node_modules
+coverage
+*.log
+.DS_Store
+.env
+.vscode
+.idea
+tsconfig.json
+tsup.config.ts
+vitest.config.ts
+biome.json
+.prettierrc.json
+.prettierignore
+.github
