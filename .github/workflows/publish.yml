@@ -1,4 +1,4 @@
-name: Publish to npm
+name: Publish to GitHub Packages
 
 on:
   workflow_dispatch:
@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      packages: write
       id-token: write
     steps:
       - name: Checkout code
@@ -20,7 +21,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: 'https://npm.pkg.github.com'
           cache: 'npm'
 
       - name: Configure Git
@@ -46,8 +47,6 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # NODE_AUTH_TOKEN: Used by setup-node action for npm registry authentication
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          # NPM_TOKEN: Used by semantic-release @semantic-release/npm plugin
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # NODE_AUTH_TOKEN: Used by setup-node action for GitHub Packages authentication
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
