@@ -41,7 +41,7 @@ Assuming a `strict: true` environment, enforce the following rules:
 
 Strict Linter settings are applied in this repository.
 
-- **Pass `npm run lint`**: Generated code must pass `npm run lint` without errors.
+- **Pass `pnpm lint`**: Generated code must pass `pnpm lint` without errors.
 - **Zero Tolerance for Ignores**:
   - Do not suppress Linter errors for any reason.
   - Comments such as `// eslint-disable-line`, `// @ts-ignore`, and `// @ts-nocheck` are **strictly prohibited**.
@@ -73,9 +73,9 @@ Immediately before outputting code, perform the following checks:
 After generating code, run the following commands to verify that the generated code meets the standards:
 
 ```bash
-npm run lint
-npm run fix # auto-format if needed
-npm run check-types
+pnpm lint
+pnpm fix # auto-format if needed
+pnpm check-types
 ```
 
 ## 7. Commit Message Format
@@ -114,11 +114,13 @@ All commit messages must follow the [Conventional Commits](https://www.conventio
 ### Verification
 
 Before committing, verify your commit message passes all rules:
+
 ```bash
 echo "your commit message" | npx commitlint
 ```
 
 To check all commits in a range:
+
 ```bash
 npx commitlint --from <base-commit> --to HEAD --verbose
 ```
