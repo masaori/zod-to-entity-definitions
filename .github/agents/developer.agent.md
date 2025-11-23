@@ -84,12 +84,14 @@ All commit messages must follow the [Conventional Commits](https://www.conventio
 
 - **Format**: `<type>: <subject>`
 - **Valid types**: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
-- **Subject**: Should be a concise description (lowercase, no period at the end)
+- **Subject**: Must be lowercase, concise, no period at the end
 - **Body** (optional): Each line must not exceed 100 characters
 - **Examples**:
-  - `fix: correct formatting in package.json`
-  - `docs: update commit message guidelines`
-  - `feat: add new validation function`
+  - ✅ `fix: correct formatting in package.json`
+  - ✅ `docs: update commit message guidelines`
+  - ✅ `feat: add new validation function`
+  - ❌ `fix: Correct formatting in package.json` (capitalized)
+  - ❌ `Fixed formatting` (missing type)
 
 ### Common Commitlint Errors to Avoid
 
