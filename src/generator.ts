@@ -2,6 +2,7 @@
  * Core generation logic for entity definitions and relations
  */
 import { z } from 'zod';
+import type { EntitySchema } from './factories';
 import { getSchemaDescription, getSchemaName, getSchemaType } from './factories';
 import { getRefMetadata, isPrimaryKey, isUnique } from './setupZod';
 import type {
@@ -15,6 +16,18 @@ import type {
   EntityRelationReferTo,
   EntityRelationReferredBy,
 } from './types';
+
+/**
+ * Helper type to extract entity name from a schema
+ */
+type ExtractEntityName<T> = T extends EntitySchema<infer TName, z.ZodRawShape> ? TName : never;
+
+/**
+ * Helper type to extract entity names from an array of schemas
+ */
+type ExtractEntityNames<T extends readonly z.ZodTypeAny[]> = {
+  [K in keyof T]: ExtractEntityName<T[K]>;
+}[number];
 
 /**
  * Unwraps a Zod schema to get the innermost type
@@ -53,7 +66,9 @@ function unwrapSchema(schema: z.ZodTypeAny): UnwrapResult {
 /**
  * Generates entity definitions from Zod schemas
  */
-export function generateEntities(schemas: z.ZodTypeAny[]): EntityDefinition[] {
+export function generateEntities<const T extends readonly z.ZodTypeAny[]>(
+  schemas: T
+): EntityDefinition<ExtractEntityNames<T>>[] {
   const definitions: EntityDefinition[] = [];
 
   for (const schema of schemas) {
@@ -97,7 +112,7 @@ export function generateEntities(schemas: z.ZodTypeAny[]): EntityDefinition[] {
     definitions.push(entityDefinition);
   }
 
-  return definitions;
+  return definitions as EntityDefinition<ExtractEntityNames<T>>[];
 }
 
 /**

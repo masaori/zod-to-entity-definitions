@@ -36,17 +36,28 @@ type ZodObjectWithMetadata = z.ZodObject<z.ZodRawShape> & {
   [SCHEMA_DESCRIPTION_SYMBOL]?: string;
 };
 
+// Branded type to carry entity name at type level
+declare const ENTITY_NAME_BRAND: unique symbol;
+export type EntitySchema<
+  TName extends string,
+  TShape extends z.ZodRawShape,
+> = z.ZodObject<TShape> & {
+  readonly [ENTITY_NAME_BRAND]: TName;
+};
+
 /**
  * Creates an entity schema with metadata
  */
-export function entity<T extends z.ZodRawShape>(config: EntityConfig<T>): z.ZodObject<T> {
+export function entity<const TConfig extends EntityConfig<z.ZodRawShape>>(
+  config: TConfig
+): EntitySchema<TConfig['name'], TConfig['columns']> {
   const schema = z.object(config.columns) as ZodObjectWithMetadata;
   schema[SCHEMA_TYPE_SYMBOL] = 'entity';
   schema[SCHEMA_NAME_SYMBOL] = config.name;
   if (config.description !== undefined) {
     schema[SCHEMA_DESCRIPTION_SYMBOL] = config.description;
   }
-  return schema as z.ZodObject<T>;
+  return schema as EntitySchema<TConfig['name'], TConfig['columns']>;
 }
 
 /**
