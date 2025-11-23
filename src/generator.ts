@@ -24,6 +24,13 @@ type ExtractEntityName<T> = T extends EntitySchema<infer TName, z.ZodRawShape> ?
 
 /**
  * Helper type to extract entity names from an array of schemas
+ *
+ * This transforms an array of EntitySchema types into a union of their names.
+ * For example: [EntitySchema<'User', ...>, EntitySchema<'Company', ...>] => 'User' | 'Company'
+ *
+ * The pattern works by:
+ * 1. Mapping over the array type to extract each entity name
+ * 2. Using [number] to create a union of all extracted names
  */
 type ExtractEntityNames<T extends readonly z.ZodTypeAny[]> = {
   [K in keyof T]: ExtractEntityName<T[K]>;
