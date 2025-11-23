@@ -7,7 +7,7 @@ import './setupZod';
 
 // Export factories
 export { entity, struct } from './factories';
-export type { EntityConfig, StructConfig } from './factories';
+export type { EntityConfig, StructConfig, EntitySchema } from './factories';
 
 // Export generators
 export { generateEntities, generateRelations } from './generator';
