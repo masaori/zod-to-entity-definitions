@@ -1,3 +1,9 @@
+## [1.0.3](https://github.com/masaori/zod-to-entity-definitions/compare/v1.0.2...v1.0.3) (2025-11-23)
+
+### Bug Fixes
+
+* remove prettier ([e488223](https://github.com/masaori/zod-to-entity-definitions/commit/e488223ec79300f05be9935a07506d38f0d80841))
+
 ## [1.0.2](https://github.com/masaori/zod-to-entity-definitions/compare/v1.0.1...v1.0.2) (2025-11-23)
 
 ### Bug Fixes
