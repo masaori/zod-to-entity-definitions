@@ -33,7 +33,12 @@ npm install @masaori/zod-to-entity-definitions zod
 
 ```typescript
 import { z } from 'zod';
-import { entity, struct, generateEntities, generateRelations } from '@masaori/zod-to-entity-definitions';
+import {
+  entity,
+  struct,
+  generateEntities,
+  generateRelations,
+} from '@masaori/zod-to-entity-definitions';
 
 // 1. Define a Struct (reusable component)
 const Address = struct({
@@ -323,28 +328,28 @@ const User = entity({
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Run tests
-npm test
+pnpm test
 
 # Run tests in watch mode
-npm run test:watch
+pnpm test:watch
 
 # Type checking
-npm run check-types
+pnpm check-types
 
 # Linting
-npm run lint
+pnpm lint
 
 # Auto-fix lint issues
-npm run lint:fix
+pnpm lint:fix
 
 # Format code
-npm run format
+pnpm format
 
 # Build
-npm run build
+pnpm build
 ```
 
 ## CI/CD
@@ -409,6 +414,7 @@ All commits must follow the [Conventional Commits](https://www.conventionalcommi
 ```
 
 Examples:
+
 - `feat: add new entity validation`
 - `fix: correct reference resolution`
 - `docs: update README with examples`
@@ -417,10 +423,11 @@ Examples:
 ### Pre-publish Checklist
 
 The package includes a `prepublishOnly` script that automatically runs before publishing:
-- Type checking (`npm run check-types`)
-- Linting (`npm run lint`)
-- Tests (`npm run test`)
-- Build (`npm run build`)
+
+- Type checking (`pnpm check-types`)
+- Linting (`pnpm lint`)
+- Tests (`pnpm test`)
+- Build (`pnpm build`)
 
 All these checks must pass before the package can be published.
 

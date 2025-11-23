@@ -2,22 +2,22 @@
 
 ### Bug Fixes
 
-* fix package.json formatting to pass Biome linter ([832183d](https://github.com/masaori/zod-to-entity-definitions/commit/832183d1c5f295400abfebeeef9e9efce923cc02))
+- fix package.json formatting to pass Biome linter ([832183d](https://github.com/masaori/zod-to-entity-definitions/commit/832183d1c5f295400abfebeeef9e9efce923cc02))
 
 ## 1.0.0 (2025-11-22)
 
 ### Features
 
-* add CI dependencies to package.json for reproducible builds ([51c5bd1](https://github.com/masaori/zod-to-entity-definitions/commit/51c5bd1d216189f0d3b4625160fe370cdcce1c4c))
-* add GitHub Actions CI workflows for commit check, lint/test, and publish ([7fd5c69](https://github.com/masaori/zod-to-entity-definitions/commit/7fd5c69615f4685e7e9ea1bdc02148229b6bc996))
-* change publish destination from npm to GitHub Packages ([ed4fdff](https://github.com/masaori/zod-to-entity-definitions/commit/ed4fdffb308f4646ff05ca8758110b8fb09bc9d2))
-* make GitHub Packages public to remove authentication requirement ([9a98805](https://github.com/masaori/zod-to-entity-definitions/commit/9a9880502fbb49ec472d8a29290aae7bde71ff85))
+- add CI dependencies to package.json for reproducible builds ([51c5bd1](https://github.com/masaori/zod-to-entity-definitions/commit/51c5bd1d216189f0d3b4625160fe370cdcce1c4c))
+- add GitHub Actions CI workflows for commit check, lint/test, and publish ([7fd5c69](https://github.com/masaori/zod-to-entity-definitions/commit/7fd5c69615f4685e7e9ea1bdc02148229b6bc996))
+- change publish destination from npm to GitHub Packages ([ed4fdff](https://github.com/masaori/zod-to-entity-definitions/commit/ed4fdffb308f4646ff05ca8758110b8fb09bc9d2))
+- make GitHub Packages public to remove authentication requirement ([9a98805](https://github.com/masaori/zod-to-entity-definitions/commit/9a9880502fbb49ec472d8a29290aae7bde71ff85))
 
 ### Bug Fixes
 
-* add explicit GITHUB_TOKEN permissions to workflows for security ([bee695c](https://github.com/masaori/zod-to-entity-definitions/commit/bee695c6bcf499d2ac2ce85886d1348811f708cb))
-* add NODE_AUTH_TOKEN for npm auth and simplify release commit message ([cd26b4e](https://github.com/masaori/zod-to-entity-definitions/commit/cd26b4edf6fca8169933c62ca0f67a548c94d4c3))
-* properly escape SHA variables and document token usage in workflows ([e32fdab](https://github.com/masaori/zod-to-entity-definitions/commit/e32fdab9333ec1ba8c186800ee83c6687c878db6))
+- add explicit GITHUB_TOKEN permissions to workflows for security ([bee695c](https://github.com/masaori/zod-to-entity-definitions/commit/bee695c6bcf499d2ac2ce85886d1348811f708cb))
+- add NODE_AUTH_TOKEN for npm auth and simplify release commit message ([cd26b4e](https://github.com/masaori/zod-to-entity-definitions/commit/cd26b4edf6fca8169933c62ca0f67a548c94d4c3))
+- properly escape SHA variables and document token usage in workflows ([e32fdab](https://github.com/masaori/zod-to-entity-definitions/commit/e32fdab9333ec1ba8c186800ee83c6687c878db6))
 
 # Changelog
 
