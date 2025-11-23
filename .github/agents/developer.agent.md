@@ -109,7 +109,14 @@ All commit messages must follow the [Conventional Commits](https://www.conventio
 4. **Empty subject**: `✖ subject may not be empty [subject-empty]`
    - Always provide a description after the type and colon
 
-Before committing, verify your commit message with:
+### Verification
+
+Before committing, verify your commit message passes all rules:
 ```bash
 echo "your commit message" | npx commitlint
+```
+
+To check all commits in a range:
+```bash
+npx commitlint --from <base-commit> --to HEAD --verbose
 ```
