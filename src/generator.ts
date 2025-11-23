@@ -18,7 +18,10 @@ import type {
 } from './types';
 
 /**
- * Helper type to extract entity name from a schema
+ * Helper type to extract entity name from a single EntitySchema
+ *
+ * For example: EntitySchema<'User', {...}> => 'User'
+ * For non-EntitySchema types, returns never
  */
 type ExtractEntityName<T> = T extends EntitySchema<infer TName, z.ZodRawShape> ? TName : never;
 
