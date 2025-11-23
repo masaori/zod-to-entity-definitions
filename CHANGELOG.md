@@ -1,3 +1,13 @@
+## [1.1.0](https://github.com/masaori/zod-to-entity-definitions/compare/v1.0.3...v1.1.0) (2025-11-23)
+
+### Features
+
+* improve generateEntities return type to infer entity names ([5e3d07d](https://github.com/masaori/zod-to-entity-definitions/commit/5e3d07d2b24701fe1bd8a9736399aea04de35a0d))
+
+### Bug Fixes
+
+* remove unnecessary file ([2dadc2b](https://github.com/masaori/zod-to-entity-definitions/commit/2dadc2b733e75a1f94b5487e4949d6f7c2ac7e22))
+
 ## [1.0.3](https://github.com/masaori/zod-to-entity-definitions/compare/v1.0.2...v1.0.3) (2025-11-23)
 
 ### Bug Fixes
