@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/masaori/zod-to-entity-definitions/compare/v1.0.0...v1.0.1) (2025-11-23)
+
+### Bug Fixes
+
+* fix package.json formatting to pass Biome linter ([832183d](https://github.com/masaori/zod-to-entity-definitions/commit/832183d1c5f295400abfebeeef9e9efce923cc02))
+
 ## 1.0.0 (2025-11-22)
 
 ### Features
