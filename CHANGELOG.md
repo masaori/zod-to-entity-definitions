@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/masaori/zod-to-entity-definitions/compare/v1.0.1...v1.0.2) (2025-11-23)
+
+### Bug Fixes
+
+* lint ([dce8fe0](https://github.com/masaori/zod-to-entity-definitions/commit/dce8fe0c332da4ace76e208c8265cdc6db589f7b))
+* run lint ([08be8e6](https://github.com/masaori/zod-to-entity-definitions/commit/08be8e6a4c19a5f0a85b74a0ecaf168af1a837ef))
+
 ## [1.0.1](https://github.com/masaori/zod-to-entity-definitions/compare/v1.0.0...v1.0.1) (2025-11-23)
 
 ### Bug Fixes
