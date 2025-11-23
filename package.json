@@ -12,29 +12,19 @@
       "require": "./dist/index.js"
     }
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "biome check .",
-    "fix": "prettier --write . && biome check --write .",
-    "format": "prettier --write .",
+    "fix": "biome check --write .",
+    "format": "biome format --write .",
     "check-types": "tsc --noEmit",
     "prepublishOnly": "npm run check-types && npm run lint && npm run test && npm run build"
   },
-  "keywords": [
-    "zod",
-    "entity",
-    "orm",
-    "schema",
-    "typescript",
-    "entity-definition",
-    "er-model"
-  ],
+  "keywords": ["zod", "entity", "orm", "schema", "typescript", "entity-definition", "er-model"],
   "author": "",
   "license": "MIT",
   "repository": {
@@ -57,7 +47,6 @@
     "@semantic-release/npm": "^12.0.0",
     "@types/node": "^22.10.1",
     "conventional-changelog-conventionalcommits": "^8.0.0",
-    "prettier": "^3.4.2",
     "semantic-release": "^24.0.0",
     "tsup": "^8.3.5",
     "tsx": "^4.20.6",
