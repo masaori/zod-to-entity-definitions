@@ -58,13 +58,13 @@ function unwrapSchema(schema: z.ZodTypeAny): UnwrapResult {
   while (true) {
     if (current instanceof z.ZodOptional) {
       isNullable = true;
-      current = current._def.innerType;
+      current = current.unwrap() as z.ZodTypeAny;
     } else if (current instanceof z.ZodNullable) {
       isNullable = true;
-      current = current._def.innerType;
+      current = current.unwrap() as z.ZodTypeAny;
     } else if (current instanceof z.ZodArray) {
       isArray = true;
-      current = current._def.type;
+      current = current.element as z.ZodTypeAny;
     } else {
       break;
     }
@@ -249,7 +249,7 @@ function getPrimitiveType(schema: z.ZodTypeAny): 'boolean' | 'number' | 'string'
  */
 function getAcceptableValues(schema: z.ZodTypeAny): string[] | null {
   if (schema instanceof z.ZodEnum) {
-    return [...schema._def.values];
+    return [...schema.options] as string[];
   }
   return null;
 }
