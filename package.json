@@ -1,6 +1,6 @@
 {
   "name": "@masaori/zod-to-entity-definitions",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "A library to define data models using Zod with extended metadata and convert them into framework-agnostic Entity Definitions",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
