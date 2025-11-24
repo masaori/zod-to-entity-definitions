@@ -7,7 +7,6 @@ describe('zod-to-entity-definitions', () => {
     it('should define entities and generate definitions', () => {
       // Define a Struct
       const Address = struct({
-        configType: 'struct',
         name: 'AddressStruct',
         description: 'Common address',
         columns: {
@@ -18,7 +17,6 @@ describe('zod-to-entity-definitions', () => {
 
       // Define Entities
       const Company = entity({
-        configType: 'entity',
         name: 'Company',
         columns: {
           id: z.string().pk(),
@@ -28,7 +26,6 @@ describe('zod-to-entity-definitions', () => {
       });
 
       const User = entity({
-        configType: 'entity',
         name: 'User',
         columns: {
           id: z.string().pk(),
@@ -110,7 +107,6 @@ describe('zod-to-entity-definitions', () => {
 
     it('should generate relations', () => {
       const Company = entity({
-        configType: 'entity',
         name: 'Company',
         columns: {
           id: z.string().pk(),
@@ -119,7 +115,6 @@ describe('zod-to-entity-definitions', () => {
       });
 
       const User = entity({
-        configType: 'entity',
         name: 'User',
         columns: {
           id: z.string().pk(),
@@ -160,7 +155,6 @@ describe('zod-to-entity-definitions', () => {
   describe('Error Cases', () => {
     it('should throw error when entity is directly nested', () => {
       const Company = entity({
-        configType: 'entity',
         name: 'Company',
         columns: {
           id: z.string().pk(),
@@ -169,7 +163,6 @@ describe('zod-to-entity-definitions', () => {
       });
 
       const User = entity({
-        configType: 'entity',
         name: 'User',
         columns: {
           id: z.string().pk(),
@@ -182,7 +175,6 @@ describe('zod-to-entity-definitions', () => {
 
     it('should throw error when .ref() points to non-entity', () => {
       const Address = struct({
-        configType: 'struct',
         name: 'AddressStruct',
         columns: {
           city: z.string(),
@@ -190,7 +182,6 @@ describe('zod-to-entity-definitions', () => {
       });
 
       const User = entity({
-        configType: 'entity',
         name: 'User',
         columns: {
           id: z.string().pk(),
@@ -207,7 +198,6 @@ describe('zod-to-entity-definitions', () => {
       });
 
       const User = entity({
-        configType: 'entity',
         name: 'User',
         columns: {
           id: z.string().pk(),
@@ -222,7 +212,6 @@ describe('zod-to-entity-definitions', () => {
   describe('Advanced Features', () => {
     it('should handle nullable and optional fields', () => {
       const User = entity({
-        configType: 'entity',
         name: 'User',
         columns: {
           id: z.string().pk(),
@@ -253,7 +242,6 @@ describe('zod-to-entity-definitions', () => {
 
     it('should handle array fields', () => {
       const User = entity({
-        configType: 'entity',
         name: 'User',
         columns: {
           id: z.string().pk(),
@@ -286,7 +274,6 @@ describe('zod-to-entity-definitions', () => {
 
     it('should handle enum fields', () => {
       const User = entity({
-        configType: 'entity',
         name: 'User',
         columns: {
           id: z.string().pk(),
@@ -308,7 +295,6 @@ describe('zod-to-entity-definitions', () => {
 
     it('should handle various primitive types', () => {
       const Entity1 = entity({
-        configType: 'entity',
         name: 'Entity1',
         columns: {
           id: z.string().pk(),
@@ -339,7 +325,6 @@ describe('zod-to-entity-definitions', () => {
 
     it('should handle complex relations', () => {
       const Department = entity({
-        configType: 'entity',
         name: 'Department',
         columns: {
           id: z.string().pk(),
@@ -348,7 +333,6 @@ describe('zod-to-entity-definitions', () => {
       });
 
       const Employee = entity({
-        configType: 'entity',
         name: 'Employee',
         columns: {
           id: z.string().pk(),
@@ -358,7 +342,6 @@ describe('zod-to-entity-definitions', () => {
       });
 
       const Project = entity({
-        configType: 'entity',
         name: 'Project',
         columns: {
           id: z.string().pk(),

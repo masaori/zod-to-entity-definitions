@@ -42,7 +42,6 @@ import {
 
 // 1. Define a Struct (reusable component)
 const Address = struct({
-  configType: 'struct',
   name: 'AddressStruct',
   description: 'Common address',
   columns: {
@@ -53,7 +52,6 @@ const Address = struct({
 
 // 2. Define Entities
 const Company = entity({
-  configType: 'entity',
   name: 'Company',
   columns: {
     id: z.string().pk(),
@@ -63,7 +61,6 @@ const Company = entity({
 });
 
 const User = entity({
-  configType: 'entity',
   name: 'User',
   columns: {
     id: z.string().pk(),
@@ -126,7 +123,6 @@ Creates an entity schema with metadata.
 
 ```typescript
 type EntityConfig<T extends z.ZodRawShape> = {
-  configType: 'entity';
   name: string;
   description?: string;
   columns: T;
@@ -139,7 +135,6 @@ Creates a struct schema for reusable components.
 
 ```typescript
 type StructConfig<T extends z.ZodRawShape> = {
-  configType: 'struct';
   name: string;
   description?: string;
   columns: T;
@@ -206,7 +201,6 @@ type EntityRelation = {
 
 ```typescript
 const User = entity({
-  configType: 'entity',
   name: 'User',
   columns: {
     id: z.string().pk(),
@@ -220,7 +214,6 @@ const User = entity({
 
 ```typescript
 const User = entity({
-  configType: 'entity',
   name: 'User',
   columns: {
     id: z.string().pk(),
@@ -234,7 +227,6 @@ const User = entity({
 
 ```typescript
 const User = entity({
-  configType: 'entity',
   name: 'User',
   columns: {
     id: z.string().pk(),
@@ -247,7 +239,6 @@ const User = entity({
 
 ```typescript
 const Department = entity({
-  configType: 'entity',
   name: 'Department',
   columns: {
     id: z.string().pk(),
@@ -256,7 +247,6 @@ const Department = entity({
 });
 
 const Employee = entity({
-  configType: 'entity',
   name: 'Employee',
   columns: {
     id: z.string().pk(),
@@ -266,7 +256,6 @@ const Employee = entity({
 });
 
 const Project = entity({
-  configType: 'entity',
   name: 'Project',
   columns: {
     id: z.string().pk(),
@@ -283,7 +272,6 @@ const Project = entity({
 
 ```typescript
 const User = entity({
-  configType: 'entity',
   name: 'User',
   columns: {
     id: z.string().pk(),
@@ -296,7 +284,6 @@ const User = entity({
 
 ```typescript
 const User = entity({
-  configType: 'entity',
   name: 'User',
   columns: {
     id: z.string().pk(),
@@ -309,13 +296,11 @@ const User = entity({
 
 ```typescript
 const Address = struct({
-  configType: 'struct',
   name: 'Address',
   columns: { city: z.string() },
 });
 
 const User = entity({
-  configType: 'entity',
   name: 'User',
   columns: {
     id: z.string().pk(),

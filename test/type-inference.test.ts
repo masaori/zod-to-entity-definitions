@@ -7,7 +7,6 @@ describe('Type Inference', () => {
   it('should infer entity names in return type', () => {
     // Define entities with specific names
     const Company = entity({
-      configType: 'entity',
       name: 'Company',
       columns: {
         id: z.string(),
@@ -15,7 +14,6 @@ describe('Type Inference', () => {
     });
 
     const Department = entity({
-      configType: 'entity',
       name: 'Department',
       columns: {
         id: z.string(),
@@ -23,7 +21,6 @@ describe('Type Inference', () => {
     });
 
     const User = entity({
-      configType: 'entity',
       name: 'User',
       columns: {
         id: z.string(),
@@ -31,7 +28,6 @@ describe('Type Inference', () => {
     });
 
     const Address = entity({
-      configType: 'entity',
       name: 'Address',
       columns: {
         id: z.string(),
@@ -64,7 +60,6 @@ describe('Type Inference', () => {
 
   it('should work with a single entity', () => {
     const User = entity({
-      configType: 'entity',
       name: 'User',
       columns: {
         id: z.string(),
@@ -92,7 +87,6 @@ describe('Type Inference', () => {
 
   it('should handle mixed entity and non-entity schemas', () => {
     const Company = entity({
-      configType: 'entity',
       name: 'Company',
       columns: {
         id: z.string(),
@@ -100,7 +94,6 @@ describe('Type Inference', () => {
     });
 
     const User = entity({
-      configType: 'entity',
       name: 'User',
       columns: {
         id: z.string(),

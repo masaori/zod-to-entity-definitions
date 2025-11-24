@@ -15,14 +15,12 @@ export const SCHEMA_METADATA_SYMBOLS = {
 } as const;
 
 export type EntityConfig<T extends z.ZodRawShape> = {
-  configType: 'entity';
   name: string;
   description?: string;
   columns: T;
 };
 
 export type StructConfig<T extends z.ZodRawShape> = {
-  configType: 'struct';
   name: string;
   description?: string;
   columns: T;

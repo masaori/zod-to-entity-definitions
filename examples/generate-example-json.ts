@@ -12,7 +12,6 @@ import { entity, generateEntities, generateRelations, struct } from '../src/inde
 
 // 1. Define a Struct (reusable component)
 const Address = struct({
-  configType: 'struct',
   name: 'AddressStruct',
   description: 'Common address structure',
   columns: {
@@ -24,7 +23,6 @@ const Address = struct({
 
 // 2. Define Entities
 const Company = entity({
-  configType: 'entity',
   name: 'Company',
   description: 'Company entity',
   columns: {
@@ -36,7 +34,6 @@ const Company = entity({
 });
 
 const Department = entity({
-  configType: 'entity',
   name: 'Department',
   columns: {
     id: z.string().pk(),
@@ -46,7 +43,6 @@ const Department = entity({
 });
 
 const User = entity({
-  configType: 'entity',
   name: 'User',
   description: 'User entity representing employees',
   columns: {
