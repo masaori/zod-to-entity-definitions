@@ -1,3 +1,9 @@
+## [1.1.2](https://github.com/masaori/zod-to-entity-definitions/compare/v1.1.1...v1.1.2) (2025-11-24)
+
+### Bug Fixes
+
+* update zod usage for v4 compatibility ([236cc10](https://github.com/masaori/zod-to-entity-definitions/commit/236cc1007a53103ba8bb8a24319fbef48a588462))
+
 ## [1.1.1](https://github.com/masaori/zod-to-entity-definitions/compare/v1.1.0...v1.1.1) (2025-11-23)
 
 ### Bug Fixes
