@@ -42,7 +42,7 @@
     "url": "https://github.com/masaori/zod-to-entity-definitions.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
+    "registry": "https://registry.npmjs.org",
     "access": "public"
   },
   "peerDependencies": {
