@@ -13,21 +13,13 @@ A TypeScript library that allows you to define data models using Zod with extend
 
 ## Installation
 
-### From GitHub Packages
+### Installation
 
-First, configure npm to use GitHub Packages for the `@masaori` scope:
-
-```bash
-npm config set @masaori:registry https://npm.pkg.github.com
-```
-
-Then install the package:
+Install the package from npm:
 
 ```bash
 npm install @masaori/zod-to-entity-definitions zod
 ```
-
-**Note:** The package is published as public on GitHub Packages, so no authentication is required for installation.
 
 ## Quick Start
 
