@@ -1,3 +1,10 @@
+## [1.1.8](https://github.com/masaori/zod-to-entity-definitions/compare/v1.1.7...v1.1.8) (2025-12-01)
+
+### Bug Fixes
+
+* add npm token and issues permission to publish workflow ([ef9c777](https://github.com/masaori/zod-to-entity-definitions/commit/ef9c777a66879ac32ff8e0867384c0fea0b960ba))
+* bump version ([c97b4c5](https://github.com/masaori/zod-to-entity-definitions/commit/c97b4c53bfd623c158098dee5243917696e55a52))
+
 ## [1.1.7](https://github.com/masaori/zod-to-entity-definitions/compare/v1.1.6...v1.1.7) (2025-11-27)
 
 ### Bug Fixes
