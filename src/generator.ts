@@ -129,9 +129,13 @@ export function generateEntities<const T extends readonly z.ZodTypeAny[]>(
  * Parses a single property from a Zod schema
  */
 function parseProperty(fieldName: string, fieldSchema: z.ZodTypeAny): EntityPropertyDefinition {
-  const isPk = isPrimaryKey(fieldSchema);
-  const isUniqueField = isUnique(fieldSchema);
-  const refMetadata = getRefMetadata(fieldSchema);
+  // Unwrap the schema first to handle cases like .ref().nullable() or .nullable().ref()
+  const { innerSchema, isNullable, isArray } = unwrapSchema(fieldSchema);
+
+  // Check metadata on both outer and inner schemas to support any order
+  const isPk = isPrimaryKey(fieldSchema) || isPrimaryKey(innerSchema);
+  const isUniqueField = isUnique(fieldSchema) || isUnique(innerSchema);
+  const refMetadata = getRefMetadata(fieldSchema) ?? getRefMetadata(innerSchema);
 
   // Handle Primary Key
   if (isPk) {
@@ -160,8 +164,6 @@ function parseProperty(fieldName: string, fieldSchema: z.ZodTypeAny): EntityProp
       throw new Error(`Referenced entity for field "${fieldName}" must have a name`);
     }
 
-    const { isNullable } = unwrapSchema(fieldSchema);
-
     const property: EntityPropertyDefinitionReferencedObject = {
       isReference: true,
       name: fieldName,
@@ -171,9 +173,6 @@ function parseProperty(fieldName: string, fieldSchema: z.ZodTypeAny): EntityProp
     };
     return property;
   }
-
-  // Unwrap the schema
-  const { innerSchema, isNullable, isArray } = unwrapSchema(fieldSchema);
 
   // Check if inner schema is an entity (not allowed)
   const innerSchemaType = getSchemaType(innerSchema);
