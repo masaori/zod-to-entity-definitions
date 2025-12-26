@@ -133,6 +133,7 @@ function parseProperty(fieldName: string, fieldSchema: z.ZodTypeAny): EntityProp
   const { innerSchema, isNullable, isArray } = unwrapSchema(fieldSchema);
 
   // Check metadata on both outer and inner schemas to support any order
+  // Note: Use || for booleans (check if true on either), ?? for objects (fallback if undefined)
   const isPk = isPrimaryKey(fieldSchema) || isPrimaryKey(innerSchema);
   const isUniqueField = isUnique(fieldSchema) || isUnique(innerSchema);
   const refMetadata = getRefMetadata(fieldSchema) ?? getRefMetadata(innerSchema);
