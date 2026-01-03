@@ -1,3 +1,13 @@
+## [2.0.0](https://github.com/masaori/zod-to-entity-definitions/compare/v1.1.8...v2.0.0) (2026-01-03)
+
+### ⚠ BREAKING CHANGES
+
+* change zod version 4.x -> 3.25.x
+
+### Features
+
+* change zod version 4.x -> 3.25.x ([9363950](https://github.com/masaori/zod-to-entity-definitions/commit/9363950992dec7e137aec0325eddb42c51cf68e6))
+
 ## [1.1.8](https://github.com/masaori/zod-to-entity-definitions/compare/v1.1.7...v1.1.8) (2025-12-01)
 
 ### Bug Fixes
