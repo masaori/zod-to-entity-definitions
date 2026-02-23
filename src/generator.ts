@@ -183,8 +183,8 @@ function parseProperty(fieldName: string, fieldSchema: z.ZodTypeAny): EntityProp
     );
   }
 
-  // Handle struct
-  if (innerSchemaType === 'struct') {
+  // Handle struct or json
+  if (innerSchemaType === 'struct' || innerSchemaType === 'json') {
     const structName = getSchemaName(innerSchema);
     if (structName === undefined) {
       throw new Error(`Struct schema for field "${fieldName}" must have a name`);
