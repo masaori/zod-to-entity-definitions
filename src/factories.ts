@@ -26,10 +26,16 @@ export type StructConfig<T extends z.ZodRawShape> = {
   columns: T;
 };
 
-// Augment ZodObject to store metadata
+export type JsonConfig<T extends z.ZodTypeAny> = {
+  name: string;
+  description?: string;
+  schema: T;
+};
+
+// Augment ZodType to store metadata
 // Note: Using bracket notation to add properties at runtime, avoiding type parameter conflicts
-type ZodObjectWithMetadata = z.ZodObject<z.ZodRawShape> & {
-  [SCHEMA_TYPE_SYMBOL]?: 'entity' | 'struct';
+type ZodTypeWithMetadata = z.ZodTypeAny & {
+  [SCHEMA_TYPE_SYMBOL]?: 'entity' | 'struct' | 'json';
   [SCHEMA_NAME_SYMBOL]?: string;
   [SCHEMA_DESCRIPTION_SYMBOL]?: string;
 };
@@ -49,7 +55,7 @@ export type EntitySchema<
 export function entity<const TConfig extends EntityConfig<z.ZodRawShape>>(
   config: TConfig
 ): EntitySchema<TConfig['name'], TConfig['columns']> {
-  const schema = z.object(config.columns) as ZodObjectWithMetadata;
+  const schema = z.object(config.columns) as ZodTypeWithMetadata;
   schema[SCHEMA_TYPE_SYMBOL] = 'entity';
   schema[SCHEMA_NAME_SYMBOL] = config.name;
   if (config.description !== undefined) {
@@ -60,9 +66,10 @@ export function entity<const TConfig extends EntityConfig<z.ZodRawShape>>(
 
 /**
  * Creates a struct schema with metadata
+ * @deprecated Use `json()` instead, which accepts any Zod schema via the `schema` parameter
  */
 export function struct<T extends z.ZodRawShape>(config: StructConfig<T>): z.ZodObject<T> {
-  const schema = z.object(config.columns) as ZodObjectWithMetadata;
+  const schema = z.object(config.columns) as ZodTypeWithMetadata;
   schema[SCHEMA_TYPE_SYMBOL] = 'struct';
   schema[SCHEMA_NAME_SYMBOL] = config.name;
   if (config.description !== undefined) {
@@ -72,25 +79,29 @@ export function struct<T extends z.ZodRawShape>(config: StructConfig<T>): z.ZodO
 }
 
 /**
+ * Creates a json schema with metadata, accepting any Zod schema
+ */
+export function json<T extends z.ZodTypeAny>(config: JsonConfig<T>): T {
+  const schema = config.schema as ZodTypeWithMetadata;
+  schema[SCHEMA_TYPE_SYMBOL] = 'json';
+  schema[SCHEMA_NAME_SYMBOL] = config.name;
+  if (config.description !== undefined) {
+    schema[SCHEMA_DESCRIPTION_SYMBOL] = config.description;
+  }
+  return config.schema;
+}
+
+/**
  * Helper functions to check schema metadata
  */
-export function getSchemaType(schema: z.ZodTypeAny): 'entity' | 'struct' | undefined {
-  if (schema instanceof z.ZodObject) {
-    return (schema as ZodObjectWithMetadata)[SCHEMA_TYPE_SYMBOL];
-  }
-  return undefined;
+export function getSchemaType(schema: z.ZodTypeAny): 'entity' | 'struct' | 'json' | undefined {
+  return (schema as ZodTypeWithMetadata)[SCHEMA_TYPE_SYMBOL];
 }
 
 export function getSchemaName(schema: z.ZodTypeAny): string | undefined {
-  if (schema instanceof z.ZodObject) {
-    return (schema as ZodObjectWithMetadata)[SCHEMA_NAME_SYMBOL];
-  }
-  return undefined;
+  return (schema as ZodTypeWithMetadata)[SCHEMA_NAME_SYMBOL];
 }
 
 export function getSchemaDescription(schema: z.ZodTypeAny): string | undefined {
-  if (schema instanceof z.ZodObject) {
-    return (schema as ZodObjectWithMetadata)[SCHEMA_DESCRIPTION_SYMBOL];
-  }
-  return undefined;
+  return (schema as ZodTypeWithMetadata)[SCHEMA_DESCRIPTION_SYMBOL];
 }
