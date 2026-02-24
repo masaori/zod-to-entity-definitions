@@ -1,3 +1,10 @@
+## [1.1.10](https://github.com/masaori/zod-to-entity-definitions/compare/v1.1.9...v1.1.10) (2026-02-24)
+
+### Bug Fixes
+
+* regenerate package-lock.json to include all platform-specific biome binaries ([#31](https://github.com/masaori/zod-to-entity-definitions/issues/31)) ([a6a6f38](https://github.com/masaori/zod-to-entity-definitions/commit/a6a6f38e032e403ac444a552d2f1a84c1a560ab3))
+* support ref metadata on wrapped schemas for order independence ([6e4c0cd](https://github.com/masaori/zod-to-entity-definitions/commit/6e4c0cdcb367a6c3a85ec329c55f1ed8303f5a6f))
+
 ## [1.1.9](https://github.com/masaori/zod-to-entity-definitions/compare/v1.1.8...v1.1.9) (2026-01-03)
 
 ### Bug Fixes
