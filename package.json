@@ -37,7 +37,6 @@
   ],
   "author": "",
   "license": "MIT",
-  "packageManager": "pnpm@10.30.2",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/masaori/zod-to-entity-definitions.git"
