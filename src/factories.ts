@@ -7,17 +7,28 @@ import { z } from 'zod';
 const SCHEMA_TYPE_SYMBOL = Symbol('zod-schema-type');
 const SCHEMA_NAME_SYMBOL = Symbol('zod-schema-name');
 const SCHEMA_DESCRIPTION_SYMBOL = Symbol('zod-schema-description');
+const SCHEMA_UNIQUES_SYMBOL = Symbol('zod-schema-uniques');
 
 export const SCHEMA_METADATA_SYMBOLS = {
   TYPE: SCHEMA_TYPE_SYMBOL,
   NAME: SCHEMA_NAME_SYMBOL,
   DESCRIPTION: SCHEMA_DESCRIPTION_SYMBOL,
+  UNIQUES: SCHEMA_UNIQUES_SYMBOL,
 } as const;
 
 export type EntityConfig<T extends z.ZodRawShape> = {
   name: string;
   description?: string;
   columns: T;
+  /**
+   * Composite (multi-column) unique constraints.
+   * Each inner array is one constraint spanning the listed columns.
+   * For single-column uniqueness use `.unique()` on the column instead.
+   *
+   * @example
+   * uniques: [['productVariantId', 'customerSegmentId']]
+   */
+  uniques?: (keyof T & string)[][];
 };
 
 export type StructConfig<T extends z.ZodRawShape> = {
@@ -38,6 +49,7 @@ type ZodTypeWithMetadata = z.ZodTypeAny & {
   [SCHEMA_TYPE_SYMBOL]?: 'entity' | 'struct' | 'json';
   [SCHEMA_NAME_SYMBOL]?: string;
   [SCHEMA_DESCRIPTION_SYMBOL]?: string;
+  [SCHEMA_UNIQUES_SYMBOL]?: string[][];
 };
 
 // Branded type to carry entity name at type level
@@ -60,6 +72,10 @@ export function entity<const TConfig extends EntityConfig<z.ZodRawShape>>(
   schema[SCHEMA_NAME_SYMBOL] = config.name;
   if (config.description !== undefined) {
     schema[SCHEMA_DESCRIPTION_SYMBOL] = config.description;
+  }
+  if (config.uniques !== undefined) {
+    // Clone to a plain string[][] so downstream consumers get a stable, non-readonly value
+    schema[SCHEMA_UNIQUES_SYMBOL] = config.uniques.map((group) => [...group]);
   }
   return schema as EntitySchema<TConfig['name'], TConfig['columns']>;
 }
@@ -104,4 +120,8 @@ export function getSchemaName(schema: z.ZodTypeAny): string | undefined {
 
 export function getSchemaDescription(schema: z.ZodTypeAny): string | undefined {
   return (schema as ZodTypeWithMetadata)[SCHEMA_DESCRIPTION_SYMBOL];
+}
+
+export function getSchemaUniques(schema: z.ZodTypeAny): string[][] | undefined {
+  return (schema as ZodTypeWithMetadata)[SCHEMA_UNIQUES_SYMBOL];
 }

@@ -118,6 +118,8 @@ type EntityConfig<T extends z.ZodRawShape> = {
   name: string;
   description?: string;
   columns: T;
+  // Composite (multi-column) unique constraints. Column names are type-checked against `columns`.
+  uniques?: (keyof T & string)[][];
 };
 ```
 
@@ -226,6 +228,38 @@ const User = entity({
   },
 });
 ```
+
+### Composite Unique Constraints
+
+Single-column uniqueness uses `.unique()` on the column. For **multi-column (composite)** uniqueness, declare it at the entity level with `uniques`. Column names are type-checked against `columns`.
+
+```typescript
+const CustomerSegmentProductVariantOffering = entity({
+  name: 'CustomerSegmentProductVariantOffering',
+  columns: {
+    id: z.string().pk(),
+    productVariantId: z.string().ref(ProductVariant),
+    customerSegmentId: z.string().ref(CustomerSegment),
+    price: z.number(),
+  },
+  // (productVariantId, customerSegmentId) must be unique together
+  uniques: [['productVariantId', 'customerSegmentId']],
+});
+```
+
+The constraint is emitted on the generated `EntityDefinition` as `compositeUniqueConstraints`:
+
+```jsonc
+{
+  "name": "CustomerSegmentProductVariantOffering",
+  "properties": [ /* ... */ ],
+  "compositeUniqueConstraints": [["productVariantId", "customerSegmentId"]]
+}
+```
+
+- Multiple constraints are supported: `uniques: [['a', 'b'], ['c', 'd']]`.
+- Each group must list **at least 2 distinct, existing** columns (otherwise `generateEntities` throws). Use `.unique()` for single-column uniqueness.
+- When no `uniques` are declared, `compositeUniqueConstraints` is omitted from the output (existing consumers are unaffected).
 
 ### Complex Relations
 
