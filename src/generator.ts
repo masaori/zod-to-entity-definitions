@@ -3,7 +3,7 @@
  */
 import { z } from 'zod';
 import type { EntitySchema } from './factories';
-import { getSchemaDescription, getSchemaName, getSchemaType } from './factories';
+import { getSchemaDescription, getSchemaName, getSchemaType, getSchemaUniques } from './factories';
 import { getRefMetadata, isPrimaryKey, isUnique } from './setupZod';
 import type {
   EntityDefinition,
@@ -119,6 +119,34 @@ export function generateEntities<const T extends readonly z.ZodTypeAny[]>(
     if (description !== undefined) {
       entityDefinition.description = description;
     }
+
+    const uniques = getSchemaUniques(schema);
+    if (uniques !== undefined && uniques.length > 0) {
+      const columnNames = new Set(Object.keys(shape));
+      for (const group of uniques) {
+        if (group.length < 2) {
+          throw new Error(
+            `Entity "${name}" has a composite unique constraint with fewer than 2 columns (${JSON.stringify(
+              group
+            )}). Use .unique() on the column for single-column uniqueness.`
+          );
+        }
+        if (new Set(group).size !== group.length) {
+          throw new Error(
+            `Entity "${name}" has a composite unique constraint with duplicate columns (${JSON.stringify(group)}).`
+          );
+        }
+        for (const column of group) {
+          if (!columnNames.has(column)) {
+            throw new Error(
+              `Entity "${name}" has a composite unique constraint referencing unknown column "${column}".`
+            );
+          }
+        }
+      }
+      entityDefinition.compositeUniqueConstraints = uniques.map((group) => [...group]);
+    }
+
     definitions.push(entityDefinition);
   }
 

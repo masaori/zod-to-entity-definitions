@@ -6,6 +6,13 @@ export type EntityDefinition<TEntityNames = string> = {
   name: TEntityNames;
   description?: string;
   properties: EntityPropertyDefinition[];
+  /**
+   * Composite (multi-column) unique constraints declared via `entity({ uniques: [...] })`.
+   * Each inner array lists the column names that together must be unique.
+   * Single-column uniqueness is represented by `isUnique` on the property instead.
+   * Omitted when the entity declares no composite unique constraints.
+   */
+  compositeUniqueConstraints?: string[][];
 };
 
 export type EntityPropertyDefinition =
