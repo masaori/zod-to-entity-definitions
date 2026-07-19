@@ -107,6 +107,31 @@ companyId: z.string().ref(Company);
 managerId: z.string().ref(User, 'userId');
 ```
 
+##### Array (to-many) references
+
+Wrapping a reference in `z.array(...)` marks it as an array (to-many) foreign key.
+The generated `ReferencedObject` property and the corresponding `referTos` / `referredBys`
+carry `isArray: true`; single (scalar) references omit the field, so existing output is
+unchanged.
+
+```typescript
+// any of these forms are recognized as an array reference
+productIds: z.array(z.string().ref(Product));
+productIds: z.string().ref(Product).array();
+productIds: z.array(z.string()).ref(Product);
+```
+
+```jsonc
+// generated property
+{ "isReference": true, "name": "productIds", "targetEntityDefinitionName": "Product", "isArray": true, ... }
+```
+
+> **Behavior change:** array references were already accepted by earlier versions, but were
+> emitted **without** `isArray` — indistinguishable from a scalar reference (the to-many
+> information was silently dropped). From this version they carry `isArray: true`. Scalar
+> reference output is unchanged. If you rely on exact-equality snapshots of generated output
+> for schemas that use array references, those snapshots will need updating.
+
 ### Factory Functions
 
 #### `entity(config)`
@@ -177,7 +202,7 @@ Union type representing different property types:
 - `EntityPropertyDefinitionPrimaryKey`: Primary key field
 - `EntityPropertyDefinitionPrimitive`: boolean, number, string, Date
 - `EntityPropertyDefinitionTypedStruct`: Reference to a struct type
-- `EntityPropertyDefinitionReferencedObject`: Foreign key reference
+- `EntityPropertyDefinitionReferencedObject`: Foreign key reference (carries `isArray?: true` for array / to-many references)
 
 ### EntityRelation
 
