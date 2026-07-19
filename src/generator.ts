@@ -200,6 +200,10 @@ function parseProperty(fieldName: string, fieldSchema: z.ZodTypeAny): EntityProp
       isUnique: isUniqueField,
       isNullable,
     };
+    // Emit isArray only for array (to-many) references, so single-reference output is unchanged.
+    if (isArray) {
+      property.isArray = true;
+    }
     return property;
   }
 
@@ -302,11 +306,16 @@ export function generateRelations(definitions: EntityDefinition[]): EntityRelati
     // Find referTos (outgoing references)
     for (const prop of def.properties) {
       if (prop.isReference) {
-        referTos.push({
+        const referTo: EntityRelationReferTo = {
           entityName: prop.targetEntityDefinitionName,
           propertyName: prop.name,
           isUnique: prop.isUnique,
-        });
+        };
+        // Emit isArray only for array (to-many) references, so single-reference output is unchanged.
+        if (prop.isArray) {
+          referTo.isArray = true;
+        }
+        referTos.push(referTo);
       }
     }
 
@@ -318,11 +327,15 @@ export function generateRelations(definitions: EntityDefinition[]): EntityRelati
 
       for (const prop of otherDef.properties) {
         if (prop.isReference && prop.targetEntityDefinitionName === def.name) {
-          referredBys.push({
+          const referredBy: EntityRelationReferredBy = {
             entityName: otherDef.name,
             propertyName: prop.name,
             isUnique: prop.isUnique,
-          });
+          };
+          if (prop.isArray) {
+            referredBy.isArray = true;
+          }
+          referredBys.push(referredBy);
         }
       }
     }

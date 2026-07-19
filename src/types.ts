@@ -56,6 +56,13 @@ export type EntityPropertyDefinitionReferencedObject = {
   targetEntityDefinitionName: string;
   isUnique: boolean;
   isNullable: boolean;
+  /**
+   * Present and `true` only when the reference is an array (a to-many foreign key,
+   * e.g. `z.array(z.string().ref(Product))`). Omitted for single (scalar) references.
+   * Kept optional and emitted only when `true` so that existing single-reference output
+   * is unchanged (backward compatible).
+   */
+  isArray?: boolean;
   description?: string;
 };
 
@@ -63,12 +70,22 @@ export type EntityRelationReferTo<T = string> = {
   entityName: T;
   propertyName: string;
   isUnique: boolean;
+  /**
+   * Present and `true` only when the referencing property is an array (to-many).
+   * Omitted for single references (backward compatible).
+   */
+  isArray?: boolean;
 };
 
 export type EntityRelationReferredBy<T = string> = {
   entityName: T;
   propertyName: string;
   isUnique: boolean;
+  /**
+   * Present and `true` only when the referencing property on the other entity is an array
+   * (to-many). Omitted for single references (backward compatible).
+   */
+  isArray?: boolean;
 };
 
 export type EntityRelation<T = string> = {
