@@ -1,3 +1,10 @@
+## [1.3.0](https://github.com/masaori/zod-to-entity-definitions/compare/v1.2.0...v1.3.0) (2026-08-09)
+
+### Features
+
+* allow zod 4.x in addition to zod 3.25.x ([#36](https://github.com/masaori/zod-to-entity-definitions/issues/36)) ([db4f570](https://github.com/masaori/zod-to-entity-definitions/commit/db4f570d34f7f6ff89b6a7e603ecf0fb39e3874a))
+* support array (to-many) foreign key references ([#35](https://github.com/masaori/zod-to-entity-definitions/issues/35)) ([85313d8](https://github.com/masaori/zod-to-entity-definitions/commit/85313d8f369227068a239bf4f627c71a95d5109c))
+
 ## [1.2.0](https://github.com/masaori/zod-to-entity-definitions/compare/v1.1.10...v1.2.0) (2026-07-12)
 
 ### Features
