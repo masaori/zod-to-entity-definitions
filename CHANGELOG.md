@@ -1,3 +1,9 @@
+## [1.4.0](https://github.com/masaori/zod-to-entity-definitions/compare/v1.3.0...v1.4.0) (2026-08-09)
+
+### Features
+
+* accept a thunk as a reference target ([#37](https://github.com/masaori/zod-to-entity-definitions/issues/37)) ([c8dce0b](https://github.com/masaori/zod-to-entity-definitions/commit/c8dce0bb158c5d581831dc6b3bca1babfe339dd9))
+
 ## [1.3.0](https://github.com/masaori/zod-to-entity-definitions/compare/v1.2.0...v1.3.0) (2026-08-09)
 
 ### Features
