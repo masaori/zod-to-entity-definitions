@@ -112,6 +112,27 @@ companyId: z.string().ref(Company);
 managerId: z.string().ref(User, 'userId');
 ```
 
+##### Cyclic references
+
+Pass a thunk when the two entities reference each other. A direct target has to be evaluated
+while the module is still initializing, so whichever side of the cycle is defined second is
+still in its temporal dead zone and throws. A thunk defers the lookup to `generateEntities()`.
+
+```typescript
+const User = entity({
+  name: 'User',
+  columns: { id: z.string().pk(), lastOrderId: z.string().ref(() => Order).nullable() },
+})
+
+const Order = entity({
+  name: 'Order',
+  columns: { id: z.string().pk(), userId: z.string().ref(() => User) },
+})
+```
+
+The resulting definition is identical to the one a direct target produces; only the moment of
+resolution differs. Thunks work anywhere a direct target does, including array references.
+
 ##### Array (to-many) references
 
 Wrapping a reference in `z.array(...)` marks it as an array (to-many) foreign key.

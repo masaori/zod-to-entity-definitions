@@ -4,7 +4,7 @@
 import { z } from 'zod';
 import type { EntitySchema } from './factories';
 import { getSchemaDescription, getSchemaName, getSchemaType, getSchemaUniques } from './factories';
-import { getRefMetadata, isPrimaryKey, isUnique } from './setupZod';
+import { getRefMetadata, isPrimaryKey, isUnique, resolveRefTarget } from './setupZod';
 import type {
   EntityDefinition,
   EntityPropertyDefinition,
@@ -178,7 +178,9 @@ function parseProperty(fieldName: string, fieldSchema: z.ZodTypeAny): EntityProp
 
   // Handle Foreign Key Reference
   if (refMetadata !== undefined) {
-    const { targetEntity } = refMetadata;
+    // Resolve here rather than at `.ref()` time so that thunks can break the module-eval
+    // cycles that mutually referencing entities create.
+    const targetEntity = resolveRefTarget(refMetadata.targetEntity);
 
     // Validate that targetEntity is an entity
     const targetSchemaType = getSchemaType(targetEntity);
