@@ -14,26 +14,10 @@ export const METADATA_SYMBOLS = {
   REF: REF_SYMBOL,
 } as const;
 
-/**
- * A reference target, given either directly or as a thunk.
- *
- * The thunk form exists because entity references form cycles in most real schemas
- * (`Order.userId -> User` and `User.lastOrderId -> Order`). A direct reference has to
- * evaluate the target at module-eval time, which throws for whichever side of the cycle
- * is initialized second. A thunk defers the lookup until `generateEntities()` runs, by
- * which point every module has finished evaluating.
- */
-export type RefTarget = z.ZodTypeAny | (() => z.ZodTypeAny);
-
 export type RefMetadata = {
-  targetEntity: RefTarget;
+  targetEntity: z.ZodTypeAny;
   targetColumn: string;
 };
-
-/** Resolves a reference target, calling it if it was given as a thunk. */
-export function resolveRefTarget(target: RefTarget): z.ZodTypeAny {
-  return typeof target === 'function' ? target() : target;
-}
 
 // Declare module augmentation for Zod types
 declare module 'zod' {
@@ -44,7 +28,7 @@ declare module 'zod' {
 
     pk(): this;
     unique(): this;
-    ref(targetEntity: RefTarget, targetColumn?: string): this;
+    ref(targetEntity: z.ZodTypeAny, targetColumn?: string): this;
   }
 }
 
@@ -59,7 +43,7 @@ z.ZodType.prototype.unique = function () {
   return this;
 };
 
-z.ZodType.prototype.ref = function (targetEntity: RefTarget, targetColumn = 'id') {
+z.ZodType.prototype.ref = function (targetEntity: z.ZodTypeAny, targetColumn = 'id') {
   this[REF_SYMBOL] = { targetEntity, targetColumn };
   return this;
 };
