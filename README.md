@@ -21,6 +21,11 @@ Install the package from npm:
 npm install @masaori/zod-to-entity-definitions zod
 ```
 
+### Supported zod versions
+
+`zod` is a peer dependency and both `3.25.x` and `4.x` are supported. CI runs the
+full test suite against both, so either major may be used without a source change.
+
 ## Quick Start
 
 ```typescript
